@@ -3,6 +3,7 @@ import tkinter as tk # provides GUI widgets
 from tkinter import messagebox
 import subprocess # allows for running commands in cmd
 import urllib.parse # parses a given string to the proper URL format
+import configparser # parses ini 
 import random
 
 # MPACS input
@@ -68,8 +69,13 @@ class App:
     # class functions
     def submit(self):
 
+        # Parse INI
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        url = config.get('URLs', 'FORMURL')
+
+        # Get user input and inject into URL
         user_msg = self.usr_justifctn.get('1.0', tk.END)
-        url = 'google form'
         params = {'entry.501677638': ipid, 'entry.349499540': pt_name, 'entry.800935706': mrn, 'entry.2083454847' : accession, 'entry.1340586078' : user_msg}
         submit_flag = '&submit=Submit'
         # Replace 'chrome' with 'google-chrome' on Linux
