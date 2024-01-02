@@ -1,0 +1,4 @@
+TODO:
+    clear textbox on click is only supposed to work on the first click but it always works. wtf
+    create icon for tk window. should be same as PACS macro icon 
+    create README
