@@ -89,7 +89,7 @@ class App:
         chrome_command = "start chrome " + '"' + url + urllib.parse.urlencode(params) + '"'
         
         subprocess.run(chrome_command, shell=True)
-        messagebox.showinfo( "Payload deployed!", "URL: " + chrome_command)
+        messagebox.showinfo("Payload deployed!")
         self.root.destroy()
 
 
