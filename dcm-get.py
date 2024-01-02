@@ -42,16 +42,19 @@ class App:
         # create root window
         self.root = tk.Tk()
         self.root.title("Image Deletion Request")
-        # self.root.geometry('700x450')
+        self.root.geometry('600x520')
         self.root.eval('tk::PlaceWindow . center')
 
         # create widgets
         self.label = tk.Label(self.root, text="Deletion request for\n the following exam:", font=("Arial", 27))
         self.pt_demo_label = tk.Label(self.root, text=pt_demo_str, font=("Arial", 14),fg='#37afdb',justify='left')
+        self.instruction = tk.Label(self.root, text= "Please describe why these image(s) need to be deleted", font=("Arial", 12))
         self.usr_justifctn = tk.Text(self.root, height=4)
-        self.usr_justifctn.insert(1.0, "Please describe why these image(s) need to be deleted")
+        self.usr_justifctn.insert(1.0, "Deletion reason...")
+        self.new_line = tk.Label(self.root, text= "\n", font=("Arial", 6))
+        self.name_label = tk.Label(self.root, text= "Please type your name here", font=("Arial", 12))
         self.tech_name = tk.Text(self.root, height=1, width= 50)
-        self.tech_name.insert(1.0, "Please type your name here")
+        self.tech_name.insert(1.0, "Name...")
         self.submit_btn = tk.Button(self.root,text='Submit',command = self.submit)
         self.usr_justifctn.bind("<Button-1>", self.on_click)
         self.tech_name.bind("<Button-1>", self.on_click)
@@ -59,7 +62,10 @@ class App:
         # pack widgets to root window
         self.label.pack(padx=20, pady=20)
         self.pt_demo_label.pack(padx=20, pady=20)
+        self.instruction.pack()
         self.usr_justifctn.pack(padx=50)
+        self.new_line.pack()
+        self.name_label.pack()
         self.tech_name.pack(pady=10)
         self.submit_btn.pack(pady=20)
 
@@ -76,14 +82,15 @@ class App:
 
         # Get user input and inject into URL
         user_msg = self.usr_justifctn.get('1.0', tk.END)
-        params = {'entry.501677638': ipid, 'entry.349499540': pt_name, 'entry.800935706': mrn, 'entry.2083454847' : accession, 'entry.1340586078' : user_msg}
-        submit_flag = '&submit=Submit'
+        tech = self.tech_name.get('1.0', tk.END)
+        params = {'entry.501677638': ipid, 'entry.349499540': pt_name, 'entry.800935706': mrn, 'entry.2083454847' : accession, 'entry.1340586078' : user_msg, 'entry.1963475195' : tech}
+
         # Replace 'chrome' with 'google-chrome' on Linux
         chrome_command = "start chrome " + '"' + url + urllib.parse.urlencode(params) + '"'
         
         subprocess.run(chrome_command, shell=True)
         messagebox.showinfo( "Payload deployed!", "URL: " + chrome_command)
-        messagebox.OK(default="Quit",command=self.root.destroy())
+        self.root.destroy()
 
 
     def on_click(self, event):
