@@ -155,4 +155,6 @@ PyInstaller or cx_Freeze for turing py into exe
 REF:
 https://www.tcl.tk/man/tcl8.6/TkCmd/entry.html
 
+GitHub repo:
+https://github.com/MattyPACSiao/Deletion-Request
 """
