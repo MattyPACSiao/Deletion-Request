@@ -62,8 +62,8 @@ class App:
             text= "Please describe why these image(s) need to be deleted", 
             font=("Arial", 12))
         
-        self.usr_justifctn = tk.Text(self.root, height=4)
-        self.usr_justifctn.insert(1.0, "Deletion reason...")
+        self.usr_justifctn_box = tk.Text(self.root, height=4)
+        self.usr_justifctn_box.insert(1.0, "Deletion reason...")
 
         self.new_line = tk.Label(self.root, text= "\n", font=("Arial", 6))
 
@@ -72,8 +72,8 @@ class App:
             text= "Please type your name here", 
             font=("Arial", 12))
         
-        self.tech_name = tk.Text(self.root, height=1, width= 50)
-        self.tech_name.insert(1.0, "Name...")
+        self.name_txt_box = tk.Text(self.root, height=1, width= 50)
+        self.name_txt_box.insert(1.0, "Name...")
 
         self.submit_btn = tk.Button(
             self.root,
@@ -81,17 +81,17 @@ class App:
             command = self.submit)
         
         # bind text boxes to delete on first click 
-        self.usr_justifctn.bind("<Button-1>", self.on_click)
-        self.tech_name.bind("<Button-1>", self.on_click)
+        self.usr_justifctn_box.bind("<Button-1>", self.on_click)
+        self.name_txt_box.bind("<Button-1>", self.on_click)
 
         # pack widgets to root window
         self.label.pack(padx=20, pady=20)
         self.pt_demo_label.pack(padx=20, pady=20)
         self.instruction.pack()
-        self.usr_justifctn.pack(padx=50)
+        self.usr_justifctn_box.pack(padx=50)
         self.new_line.pack()
         self.name_label.pack()
-        self.tech_name.pack(pady=10)
+        self.name_txt_box.pack(pady=10)
         self.submit_btn.pack(pady=20)
 
         self.root.mainloop()
@@ -106,8 +106,8 @@ class App:
         url = config.get('URLs', 'FORMURL')
 
         # Get user input and inject into URL
-        user_msg = self.usr_justifctn.get('1.0', tk.END)
-        tech = self.tech_name.get('1.0', tk.END)
+        user_msg = self.usr_justifctn_box.get('1.0', tk.END)
+        tech = self.name_txt_box.get('1.0', tk.END)
         params = {
             'entry.501677638': ipid, 
             'entry.349499540': pt_name, 
