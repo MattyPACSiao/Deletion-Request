@@ -16,12 +16,12 @@ input = sys.argv[1:]
 #     pt_name = input[2]
 #     accession = input[3]
 # except IndexError as e:
-#     print("Missing Patient Demographic")
-#     print(f"Error: {e}")
+#     print('Missing Patient Demographic')
+#     print(f'Error: {e}')
 
 #     root2 = tk.Tk()
-#     root2.title("Deletion Request Error")
-#     label = tk.Label(root2, text="Error: Missing Patient Demographics", font=("Arial", 16))
+#     root2.title('Deletion Request Error')
+#     label = tk.Label(root2, text='Error: Missing Patient Demographics', font=('Arial', 16))
 #     label.pack(padx=20, pady=20)
 
 #     root2.mainloop()
@@ -33,7 +33,7 @@ mrn = 'test' + str(random.randrange(999999999))
 ipid = 'SOCAL_CSB'
 pt_name = 'Python test'
 accession = 'ACC' + str(random.randrange(999999999))
-pt_demo_str = f"MRN: {mrn},\nIPID: {ipid}, \nPatient Name: {pt_name}, \nAccession #: {accession}"
+pt_demo_str = f'MRN: {mrn},\nIPID: {ipid}, \nPatient Name: {pt_name}, \nAccession #: {accession}'
 
 class App:
 
@@ -41,40 +41,40 @@ class App:
 
         # create root window
         self.root = tk.Tk()
-        self.root.iconbitmap("./img/face.ico")
-        self.root.title("Image Deletion Request")
+        self.root.iconbitmap('./img/face.ico')
+        self.root.title('Image Deletion Request')
         self.root.geometry('600x520')
         self.root.eval('tk::PlaceWindow . center')
 
         # create widgets
         self.label = tk.Label(
             self.root, 
-            text="Deletion request for\n the following exam:", 
-            font=("Arial", 27))
+            text='Deletion request for\n the following exam:', 
+            font=('Arial', 27))
         
         self.pt_demo_label = tk.Label(
             self.root, 
             text=pt_demo_str, 
-            font=("Arial", 14),
+            font=('Arial', 14),
             fg='#37afdb',justify='left')
         
         self.instruction = tk.Label(
             self.root, 
-            text= "Please describe why these image(s) need to be deleted", 
-            font=("Arial", 12))
+            text= 'Please describe why these image(s) need to be deleted', 
+            font=('Arial', 12))
         
         self.usr_justifctn_box = tk.Text(self.root, height=4)
-        self.usr_justifctn_box.insert(1.0, "Deletion reason...")
+        self.usr_justifctn_box.insert(1.0, 'Deletion reason...')
 
-        self.new_line = tk.Label(self.root, text= "\n", font=("Arial", 6))
+        self.new_line = tk.Label(self.root, text= '\n', font=('Arial', 6))
 
         self.name_label = tk.Label(
             self.root, 
-            text= "Please type your name here", 
-            font=("Arial", 12))
+            text= 'Please type your name here', 
+            font=('Arial', 12))
         
         self.name_txt_box = tk.Text(self.root, height=1, width= 50)
-        self.name_txt_box.insert(1.0, "Name...")
+        self.name_txt_box.insert(1.0, 'Name...')
 
         self.submit_btn = tk.Button(
             self.root,
@@ -82,8 +82,8 @@ class App:
             command = self.submit)
         
         # bind text boxes to delete on first click 
-        self.usr_justifctn_box.bind("<Button-1>", self.on_click)
-        self.name_txt_box.bind("<Button-1>", self.on_click)
+        self.usr_justifctn_box.bind('<Button-1>', self.on_click)
+        self.name_txt_box.bind('<Button-1>', self.on_click)
 
         # pack widgets to root window
         self.label.pack(padx=20, pady=20)
@@ -119,10 +119,10 @@ class App:
             }
 
         # Replace 'chrome' with 'google-chrome' on Linux
-        chrome_command = "start chrome " + '"' + url + urllib.parse.urlencode(params) + '"'
+        chrome_command = 'start chrome ' + '"' + url + urllib.parse.urlencode(params) + '"'
         
         subprocess.run(chrome_command, shell=True)
-        messagebox.showinfo("Payload deployed!", "Thank you for your request!")
+        messagebox.showinfo('Payload deployed!', 'Thank you for your request!')
         self.root.destroy()
 
 
@@ -134,7 +134,7 @@ class App:
 
 
 App()
-"""
+'''
 PURPOSE:
 orchestrate sending relevant DICOM info to google form
 1. take DICOM values from PACS
@@ -159,4 +159,4 @@ https://www.tcl.tk/man/tcl8.6/TkCmd/entry.html
 
 GitHub repo:
 https://github.com/MattyPACSiao/Deletion-Request
-"""
+'''
