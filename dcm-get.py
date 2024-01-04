@@ -127,6 +127,7 @@ class App:
 
     def on_click(self, event):
         event.widget.delete('1.0', tk.END) # clears string
+        event.widget.unbind('<Button-1>')
 
 
 
