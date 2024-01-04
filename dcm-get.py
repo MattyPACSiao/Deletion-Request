@@ -141,18 +141,8 @@ orchestrate sending relevant DICOM info to google form
 2. take deletion justification and tech name from GUI
 
 TODO:
-set macro to run this script
-1.
-get user input(DICOM tag) from cli
-print that input
-test this from cli
 
-display output in GUI window
-
-CONFIRMED:
-can turn py into exe
-exe can still take cli args
-PyInstaller or cx_Freeze for turing py into exe
+Create final icon
 
 REF:
 https://www.tcl.tk/man/tcl8.6/TkCmd/entry.html
