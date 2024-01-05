@@ -5,6 +5,7 @@ import subprocess # allows for running commands in cmd
 import urllib.parse # parses a given string to the proper URL format
 import configparser # parses ini 
 import random
+import webbrowser
 
 # MPACS input
 input = sys.argv[1:]
@@ -41,10 +42,10 @@ class App:
 
         # create root window
         self.root = tk.Tk()
-        self.root.iconbitmap('./img/face.ico')
+        self.root.iconbitmap('./img/icon.ico')
         self.root.title('Image Deletion Request')
-        self.root.geometry('600x520')
-        self.root.eval('tk::PlaceWindow . center')
+        self.root.geometry('600x600')
+        # self.root.eval('tk::PlaceWindow . center')
 
         # create widgets
         self.label = tk.Label(
@@ -81,6 +82,21 @@ class App:
             text='Submit',
             command = self.submit)
         
+        self.click_btn= tk.PhotoImage(name='README', file='./img/GitHub_Logo_small.png')
+
+        self.github_msg = tk.Label(
+            self.root, 
+            text='README here:', 
+            font=('Arial', 12),
+            fg='#37afdb',
+            justify='left')
+
+        self.github_button= tk.Button(self.root, 
+                               image=self.click_btn,
+                               command= self.goto_git_hub, 
+                               justify='left')
+
+        
         # bind text boxes to delete on first click 
         self.usr_justifctn_box.bind('<Button-1>', self.on_click)
         self.name_txt_box.bind('<Button-1>', self.on_click)
@@ -89,11 +105,13 @@ class App:
         self.label.pack(padx=20, pady=20)
         self.pt_demo_label.pack(padx=20, pady=20)
         self.instruction.pack()
-        self.usr_justifctn_box.pack(padx=50)
+        self.usr_justifctn_box.pack(padx=50, pady=10)
         self.new_line.pack()
         self.name_label.pack()
         self.name_txt_box.pack(pady=10)
         self.submit_btn.pack(pady=20)
+        self.github_msg.pack()
+        self.github_button.pack()
 
         self.root.mainloop()
         
@@ -129,6 +147,10 @@ class App:
     def on_click(self, event):
         event.widget.delete('1.0', tk.END) # clears string
         event.widget.unbind('<Button-1>')
+
+    
+    def goto_git_hub(self):
+        webbrowser.open('https://github.com/MattyPACSiao/Deletion-Request')  
 
 
 
