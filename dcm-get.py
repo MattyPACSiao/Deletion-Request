@@ -42,7 +42,7 @@ class App:
 
         # create root window
         self.root = tk.Tk()
-        self.root.iconbitmap('./img/icon.ico')
+        self.root.iconbitmap(default='.\img\icon.ico')
         self.root.title('Image Deletion Request')
         self.root.geometry('600x600')
         # self.root.eval('tk::PlaceWindow . center')
