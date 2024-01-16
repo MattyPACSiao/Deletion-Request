@@ -2,7 +2,7 @@ from cx_Freeze import setup, Executable
 
 # Dependencies are automatically detected, but it might need
 # fine-tuning.
-include_files = ['.\img\icon.ico']
+include_files = ['icon.ico', 'GitHub_Logo_small.png', 'config.ini']
 build_options = {'packages': [], 'excludes': [], 'include_files': include_files}
 
 import sys

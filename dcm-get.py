@@ -42,7 +42,7 @@ class App:
 
         # create root window
         self.root = tk.Tk()
-        self.root.iconbitmap(default='.\img\icon.ico')
+        self.root.iconbitmap(default='icon.ico')
         self.root.title('Image Deletion Request')
         self.root.geometry('600x600')
         # self.root.eval('tk::PlaceWindow . center')
@@ -82,7 +82,7 @@ class App:
             text='Submit',
             command = self.submit)
         
-        self.click_btn= tk.PhotoImage(name='README', file='./img/GitHub_Logo_small.png')
+        self.click_btn= tk.PhotoImage(name='README', file='GitHub_Logo_small.png')
 
         self.github_msg = tk.Label(
             self.root, 
