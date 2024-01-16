@@ -11,29 +11,30 @@ import webbrowser
 input = sys.argv[1:]
 
 # Set global vars from MPACS input
-# try:
-#     mrn = input[0]
-#     ipid = input[1]
-#     pt_name = input[2]
-#     accession = input[3]
-# except IndexError as e:
-#     print('Missing Patient Demographic')
-#     print(f'Error: {e}')
+try:
+    mrn = input[0]
+    ipid = input[1]
+    pt_name = input[2]
+    accession = input[3]
+except IndexError as e:
+    print('Missing Patient Demographic')
+    print(f'Error: {e}')
 
-#     root2 = tk.Tk()
-#     root2.title('Deletion Request Error')
-#     label = tk.Label(root2, text='Error: Missing Patient Demographics', font=('Arial', 16))
-#     label.pack(padx=20, pady=20)
+    root2 = tk.Tk()
+    root2.title('Deletion Request Error')
+    label = tk.Label(root2, text=f'Missing Patient Demographics\nError:{e}\nReceived input of: {input}', font=('Arial', 16))
+    label.pack(padx=20, pady=20)
 
-#     root2.mainloop()
+    root2.mainloop()
 
-#     quit()
+    quit()
 
 # Hardcoded for testing
-mrn = 'test' + str(random.randrange(999999999))
-ipid = 'SOCAL_CSB'
-pt_name = 'Python test'
-accession = 'ACC' + str(random.randrange(999999999))
+# mrn = 'test' + str(random.randrange(999999999))
+# ipid = 'SOCAL_CSB'
+# pt_name = 'Python test'
+# accession = 'ACC' + str(random.randrange(999999999))
+    
 pt_demo_str = f'MRN: {mrn},\nIPID: {ipid}, \nPatient Name: {pt_name}, \nAccession #: {accession}'
 
 class App:
