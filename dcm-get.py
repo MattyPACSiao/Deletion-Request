@@ -22,7 +22,7 @@ except IndexError as e:
 
     root2 = tk.Tk()
     root2.title('Deletion Request Error')
-    label = tk.Label(root2, text=f'Missing Patient Demographics\nError:{e}\nReceived input of: {input}', font=('Arial', 16))
+    label = tk.Label(root2, text=f'Missing Patient Demographics\nError:{e}\nReceived input of: {input}\n\nPlease make sure that your exam is not missing any of the following info: MRN, Patient name, Accession#', font=('Arial', 16))
     label.pack(padx=20, pady=20)
 
     root2.mainloop()
