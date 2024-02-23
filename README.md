@@ -1,6 +1,6 @@
 # Deletion-Request
 ### A python GUI that sends a request to site leadership to approve deletion of an exam/series/image.
-![](https://github.com/MattyPACSiao/Deletion-Request/blob/main/img/Del.png)
+![](https://github.com/MattyPACSiao/Deletion-Request/blob/main/img/mermaid-diagram-2024-02-23-142851.png)
 
 ### The Merge PACS application is able to run CLI commands and pass DICOM tags as command arguments from a macro icon. This python script is compiled into a `.exe` and ran on macro click.
 - Takes input(patient info from DICOM tags taken from Merge RPACS) from the CLI.
