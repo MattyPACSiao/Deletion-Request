@@ -8,7 +8,11 @@ import random
 import webbrowser
 
 # MPACS input
-input = sys.argv[1:]
+DICOM_tags = sys.argv[1:]
+tags_to_string = ''.join(DICOM_tags)
+
+# handle whitespaces in demographics
+input = tags_to_string.split('?')
 
 # Set global vars from MPACS input
 try:
@@ -49,6 +53,11 @@ class App:
         # self.root.eval('tk::PlaceWindow . center')
 
         # create widgets
+        self.debug = tk.Label(
+            self.root, 
+            text=input, 
+            font=('Arial', 27))
+
         self.label = tk.Label(
             self.root, 
             text='Deletion request for\n the following exam:', 
@@ -103,6 +112,7 @@ class App:
         self.name_txt_box.bind('<Button-1>', self.on_click)
 
         # pack widgets to root window
+        self.debug.pack(padx=20, pady=20)
         self.label.pack(padx=20, pady=20)
         self.pt_demo_label.pack(padx=20, pady=20)
         self.instruction.pack()
