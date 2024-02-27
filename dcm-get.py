@@ -112,7 +112,7 @@ class App:
         self.name_txt_box.bind('<Button-1>', self.on_click)
 
         # pack widgets to root window
-        self.debug.pack(padx=20, pady=20)
+        #self.debug.pack(padx=20, pady=20)
         self.label.pack(padx=20, pady=20)
         self.pt_demo_label.pack(padx=20, pady=20)
         self.instruction.pack()
