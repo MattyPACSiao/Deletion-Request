@@ -13,7 +13,7 @@ executables = [
 ]
 
 setup(name='Deletion Request',
-      version='1.4',
+      version='1.5',
       description='Sends an image deletion request to google sheets',
       options={'build_exe': build_options},
       executables=executables)
