@@ -175,7 +175,8 @@ orchestrate sending relevant DICOM info to google form
 
 TODO:
 
-Create final icon
+- Create final icon
+- Make user entry fields mandatory
 
 REF:
 https://www.tcl.tk/man/tcl8.6/TkCmd/entry.html
