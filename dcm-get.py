@@ -6,8 +6,19 @@ import urllib.parse # parses a given string to the proper URL format
 import configparser # parses ini 
 import random
 import webbrowser
+import os
+import ctypes
 
-#Test
+def get_display_name():
+        GetUserNameEx = ctypes.windll.secur32.GetUserNameExW
+        NameDisplay = 3
+     
+        size = ctypes.pointer(ctypes.c_ulong(0))
+        GetUserNameEx(NameDisplay, None, size)
+     
+        nameBuffer = ctypes.create_unicode_buffer(size.contents.value)
+        GetUserNameEx(NameDisplay, nameBuffer, size)
+        return nameBuffer.value
 
 # MPACS input
 DICOM_tags = sys.argv[1:]
@@ -87,7 +98,10 @@ class App:
             font=('Arial', 12))
         
         self.name_txt_box = tk.Text(self.root, height=1, width= 50)
-        self.name_txt_box.insert(1.0, 'Name...')
+        if os.environ['USERNAME']==os.environ['COMPUTERNAME']:
+            self.name_txt_box.insert(1.0, 'Name...')
+        else:
+            self.name_txt_box.insert(1.0, get_display_name())
 
         self.submit_btn = tk.Button(
             self.root,
@@ -111,7 +125,8 @@ class App:
         
         # bind text boxes to delete on first click 
         self.usr_justifctn_box.bind('<Button-1>', self.on_click)
-        self.name_txt_box.bind('<Button-1>', self.on_click)
+        if os.environ['USERNAME']==os.environ['COMPUTERNAME']:
+            self.name_txt_box.bind('<Button-1>', self.on_click)
 
         # pack widgets to root window
         #self.debug.pack(padx=20, pady=20)
