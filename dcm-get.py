@@ -7,6 +7,8 @@ import configparser # parses ini
 import random
 import webbrowser
 
+#Test
+
 # MPACS input
 DICOM_tags = sys.argv[1:]
 tags_to_string = ''.join(DICOM_tags)
