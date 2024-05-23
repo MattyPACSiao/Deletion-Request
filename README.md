@@ -12,6 +12,9 @@
 
 <br/><br/><br/><br/>
 # SCSA RPACS Deletion Workflow
+
+## Function Flow Chart 
+[![](https://mermaid.ink/img/pako:eNptkcFqwzAMhl_F6NRC8wI5DNKkbJfBaHKbd9BsNQl1bOMohNL03efWOYxuPpnv-2Uk6wrKaYIcsiyTlns2lItX51pDovB-FLUKvWdpH_5k3Kw6DCyaSloRT_G5huuOiL8S3G8ktMRHN1fIuNlK2CZRJvFBYXTWkvmlqqSeCg6RDuhrMqSYdOOeS9cuRJa9iOWIs7g_sOzXPhIuQsDLUv7D1iHKxN5w7ESD34aWw9rUXwE7GCgM2Ov4add7TAJ3NJCEPF41hrMEaW8xhxO7-mIV5Bwm2sHkNTJVPbYBB8hPaMZISffswnvawmMZtx80KX32?type=png)](https://mermaid.live/edit#pako:eNptkcFqwzAMhl_F6NRC8wI5DNKkbJfBaHKbd9BsNQl1bOMohNL03efWOYxuPpnv-2Uk6wrKaYIcsiyTlns2lItX51pDovB-FLUKvWdpH_5k3Kw6DCyaSloRT_G5huuOiL8S3G8ktMRHN1fIuNlK2CZRJvFBYXTWkvmlqqSeCg6RDuhrMqSYdOOeS9cuRJa9iOWIs7g_sOzXPhIuQsDLUv7D1iHKxN5w7ESD34aWw9rUXwE7GCgM2Ov4add7TAJ3NJCEPF41hrMEaW8xhxO7-mIV5Bwm2sHkNTJVPbYBB8hPaMZISffswnvawmMZtx80KX32)
 ## Overview
 1. Users submit a request to delete an exam via a Google form. 
 2. This form contains relevant exam data and, on form submission, posts it to a Google sheet.
