@@ -56,13 +56,19 @@ pt_demo_str = f'MRN: {mrn},\nIPID: {ipid}, \nPatient Name: {pt_name}, \nAccessio
 
 class App:
 
+    def configure_submit_button(self,event):
+        if self.usr_justifctn_box.get("1.0",'end-1c') and self.name_txt_box.get("1.0",'end-1c'):
+            self.submit_btn.config(state = tk.NORMAL)
+        else:
+            self.submit_btn.config(state = tk.DISABLED)
+
     def __init__(self):
 
         # create root window
         self.root = tk.Tk()
         self.root.iconbitmap(default='icon.ico')
         self.root.title('Image Deletion Request')
-        self.root.geometry('600x600')
+        self.root.geometry('600x650')
         # self.root.eval('tk::PlaceWindow . center')
 
         # create widgets
@@ -73,7 +79,7 @@ class App:
 
         self.label = tk.Label(
             self.root, 
-            text='Deletion request for\n the following exam:', 
+            text='Image deletion request for\n the following exam:', 
             font=('Arial', 27))
         
         self.pt_demo_label = tk.Label(
@@ -84,17 +90,18 @@ class App:
         
         self.instruction = tk.Label(
             self.root, 
-            text= 'Please describe why these image(s) need to be deleted', 
+            text= 'Please describe why image(s) need(s) to be deleted *', 
             font=('Arial', 12))
         
         self.usr_justifctn_box = tk.Text(self.root, height=4)
-        self.usr_justifctn_box.insert(1.0, 'Deletion reason...')
+        self.usr_justifctn_box.insert(1.0,'Enter a reason as to why the image(s) need(s) to be deleted')
+        self.usr_justifctn_box.bind("<KeyRelease>", self.configure_submit_button)
 
         self.new_line = tk.Label(self.root, text= '\n', font=('Arial', 6))
 
         self.name_label = tk.Label(
             self.root, 
-            text= 'Please type your name here', 
+            text= 'Please provide your name to request deletion approval *', 
             font=('Arial', 12))
         
         self.name_txt_box = tk.Text(self.root, height=1, width= 50)
@@ -102,11 +109,19 @@ class App:
             self.name_txt_box.insert(1.0, 'Name...')
         else:
             self.name_txt_box.insert(1.0, get_display_name())
+        self.name_txt_box.bind("<KeyRelease>", self.configure_submit_button)
+        
+        self.required_label = tk.Label(
+            self.root, 
+            text="* = Required Fields", 
+            font=('Arial', 12),
+            fg='#EE4B2B',justify='left')
 
         self.submit_btn = tk.Button(
             self.root,
             text='Submit',
-            command = self.submit)
+            command = self.submit,
+            state = tk.DISABLED)
         
         self.click_btn= tk.PhotoImage(name='README', file='GitHub_Logo_small.png')
 
@@ -137,6 +152,7 @@ class App:
         self.new_line.pack()
         self.name_label.pack()
         self.name_txt_box.pack(pady=10)
+        self.required_label.pack()
         self.submit_btn.pack(pady=20)
         self.github_msg.pack()
         self.github_button.pack()
