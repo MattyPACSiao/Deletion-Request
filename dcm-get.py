@@ -9,6 +9,65 @@ import webbrowser
 import os
 import ctypes
 
+# Get the current working directory to use in "required files" check
+_cwd = os.path.realpath(__file__)
+_cwd = _cwd.replace(__file__,"")
+
+# Let's make sure we got the files we need for program to function.
+if os.path.exists(_cwd+"icon.ico") and os.path.exists(_cwd+"GitHub_Logo_small.png") and os.path.exists(_cwd+"config.ini"):
+    print ("icon.ico: "+ str(os.path.exists(_cwd+"icon.ico")))
+    print ("GitHub Logo: "+ str(os.path.exists(_cwd+"GitHub_Logo_small.png")))
+    print ("config.ini: "+ str(os.path.exists(_cwd+"config.ini")))
+    print("Required files present")
+else:
+    print('Required files missing')
+    print ("icon.ico: "+ str(os.path.exists(_cwd+"icon.ico")))
+    print ("GitHub Logo: "+ str(os.path.exists(_cwd+"GitHub_Logo_small.png")))
+    print ("config.ini: "+ str(os.path.exists(_cwd+"config.ini")))
+    root1 = tk.Tk()
+    root1.title('Required Files Missing')
+    label = tk.Label(root1, text=f'Files required for proper program execution missing.\n\n' + "icon.ico: "+ str(os.path.exists(_cwd+"icon.ico")) + "\n" + "GitHub Logo: "+ str(os.path.exists(_cwd+"GitHub_Logo_small.png")) + "\n" + "config.ini: "+ str(os.path.exists(_cwd+"config.ini")) + "\n\nProgram will close.", font=('Arial', 16))
+    label.pack(padx=20, pady=20)
+
+    root1.mainloop()
+
+    quit()
+
+# MPACS input
+DICOM_tags = sys.argv[1:]
+tags_to_string = ''.join(DICOM_tags)
+
+# Passing "/TEST" (case sensitive) to the program will launch a version that doesn't require MPACS input.
+if tags_to_string.find("/TEST"):
+    # handle whitespaces in demographics
+    input = tags_to_string.split('?')
+
+    # Set global vars from MPACS input
+    try:
+        mrn = input[0]
+        ipid = input[1]
+        pt_name = input[2]
+        accession = input[3]
+    except IndexError as e:
+        print('Missing Patient Demographic')
+        print(f'Error: {e}')
+
+        root2 = tk.Tk()
+        root2.title('Deletion Request Error')
+        label = tk.Label(root2, text=f'Missing Patient Demographics\nError:{e}\nReceived input of: {input}\n\nPlease make sure that your exam is not missing any of the following info: MRN, Patient name, Accession#', font=('Arial', 16))
+        label.pack(padx=20, pady=20)
+
+        root2.mainloop()
+
+        quit()
+else:
+    # Hardcoded for testing
+    mrn = 'test' + str(random.randrange(999999999))
+    ipid = 'SOCAL_CSB'
+    pt_name = 'Python test'
+    accession = 'ACC' + str(random.randrange(999999999))
+
+# Function to retrieve the "Display Name" of the currently logged in user.
 def get_display_name():
         GetUserNameEx = ctypes.windll.secur32.GetUserNameExW
         NameDisplay = 3
@@ -20,42 +79,11 @@ def get_display_name():
         GetUserNameEx(NameDisplay, nameBuffer, size)
         return nameBuffer.value
 
-# MPACS input
-DICOM_tags = sys.argv[1:]
-tags_to_string = ''.join(DICOM_tags)
-
-# handle whitespaces in demographics
-input = tags_to_string.split('?')
-
-# Set global vars from MPACS input
-try:
-    mrn = input[0]
-    ipid = input[1]
-    pt_name = input[2]
-    accession = input[3]
-except IndexError as e:
-    print('Missing Patient Demographic')
-    print(f'Error: {e}')
-
-    root2 = tk.Tk()
-    root2.title('Deletion Request Error')
-    label = tk.Label(root2, text=f'Missing Patient Demographics\nError:{e}\nReceived input of: {input}\n\nPlease make sure that your exam is not missing any of the following info: MRN, Patient name, Accession#', font=('Arial', 16))
-    label.pack(padx=20, pady=20)
-
-    root2.mainloop()
-
-    quit()
-
-# Hardcoded for testing
-# mrn = 'test' + str(random.randrange(999999999))
-# ipid = 'SOCAL_CSB'
-# pt_name = 'Python test'
-# accession = 'ACC' + str(random.randrange(999999999))
-    
 pt_demo_str = f'MRN: {mrn},\nIPID: {ipid}, \nPatient Name: {pt_name}, \nAccession #: {accession}'
 
 class App:
 
+    # If both "reason for deletion" and "user requesting deletion" contain text, enable the submit button (disabled by default)
     def configure_submit_button(self,event):
         if self.usr_justifctn_box.get("1.0",'end-1c') and self.name_txt_box.get("1.0",'end-1c'):
             self.submit_btn.config(state = tk.NORMAL)
